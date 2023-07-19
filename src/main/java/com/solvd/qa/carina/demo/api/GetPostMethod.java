@@ -8,13 +8,9 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
-@Endpoint(url = "${base_url}/posts", methodType = HttpMethodType.GET)
+@Endpoint(url = "${config.env.api_url}/posts", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/posts/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetPostMethod extends AbstractApiMethodV2 {
-
-    public GetPostMethod() {
-        replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
-    }
 
 }

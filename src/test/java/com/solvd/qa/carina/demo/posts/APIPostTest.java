@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 import java.lang.invoke.MethodHandles;
 
 public class APIPostTest implements IAbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
     @MethodOwner(owner = "duy")
@@ -31,7 +30,7 @@ public class APIPostTest implements IAbstractTest {
 
     @Test()
     @MethodOwner(owner = "duy")
-    public void testCreatePost() throws Exception {
+    public void testCreatePost() {
 
         //preparing call request
         PostPostMethod api = new PostPostMethod();
@@ -46,13 +45,14 @@ public class APIPostTest implements IAbstractTest {
 
     @Test()
     @MethodOwner(owner = "duy")
-    public void testCreatePostMissingSomeFields() throws Exception {
+    public void testCreatePostMissingSomeFields() {
         //preparing call request
         PostPostMethod api = new PostPostMethod();
         api.setProperties("api/posts/post.properties");
 
         //remove field
-        api.getProperties().remove("title");
+//        api.getProperties().remove("title");
+        api.getProperties().remove("body");
 
         //making call to endpoint
         api.callAPIExpectSuccess();
@@ -70,11 +70,17 @@ public class APIPostTest implements IAbstractTest {
 
         //making call to endpoint
         Response response = api.callAPIExpectSuccess();
-        String title = response.jsonPath().getString("0.title");
+        int id = response.jsonPath().getInt("0.id");
 
         //preparing call Patch request
         PatchPostMethod updateApi = new PatchPostMethod();
+        updateApi.replaceUrlPlaceholder("post_id", Integer.toString(id));
 
+        //making call to endpoint
+        updateApi.callAPIExpectSuccess();
+
+        //validate response
+        updateApi.validateResponse();
 
     }
 

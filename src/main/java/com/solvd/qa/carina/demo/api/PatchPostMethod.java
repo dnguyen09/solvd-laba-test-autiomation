@@ -9,13 +9,10 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
-@Endpoint(url = "${base_url}/posts", methodType = HttpMethodType.PATCH)
+@Endpoint(url = "${config.env.api_url}/posts/${post_id}", methodType = HttpMethodType.PATCH)
 @RequestTemplatePath(path = "api/posts/_patch/rq.json")
 @ResponseTemplatePath(path = "api/posts/_patch/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PatchPostMethod extends AbstractApiMethodV2 {
 
-    public PatchPostMethod() {
-        replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
-    }
 }

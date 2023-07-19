@@ -1,8 +1,4 @@
-[
-  {
-    "userId": "${userId}",
-    "id": 1,
-    <#if title??> "title": "${title}",</#if>
-    <#if body??> "body": "${body}"</#if>
-  }
-]
+{
+  "title": "Pale Fire"
+}
+
