@@ -1,6 +1,8 @@
-package com.solvd.qa.carina.demo.postsBlock4;
+package com.solvd.qa.carina.demo.posts_block_4;
 
-import com.solvd.qa.carina.demo.api.*;
+import com.solvd.qa.carina.demo.api.GetPostMethod;
+import com.solvd.qa.carina.demo.api.PatchPostMethod;
+import com.solvd.qa.carina.demo.api.PostPostMethod;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;

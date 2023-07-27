@@ -1,4 +1,4 @@
-package com.solvd.qa.carina.demo.webYahooTest;
+package com.solvd.qa.carina.demo.web_yahoo_test;
 
 import com.solvd.qa.carina.demo.gui.components.WeatherItem;
 import com.solvd.qa.carina.demo.gui.components.YahooNewsItem;
@@ -7,6 +7,8 @@ import com.solvd.qa.carina.demo.gui.pages.desktop.yahoo.HomePage;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import com.zebrunner.carina.dataprovider.IAbstractDataProvider;
+import com.zebrunner.carina.dataprovider.annotations.XlsDataSourceParameters;
 import com.zebrunner.carina.utils.R;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +19,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class WebYahooTest implements IAbstractTest {
+public class WebYahooTest implements IAbstractTest, IAbstractDataProvider {
 
     @Test
     @TestPriority(Priority.P3)
@@ -93,9 +95,10 @@ public class WebYahooTest implements IAbstractTest {
         };
     }
 
-    @Test()
+    @Test(dataProvider = "DataProvider")
     @TestPriority(Priority.P3)
-    public void testSportPlayerInfo() {
+    @XlsDataSourceParameters(path = "data_source/playerData.xlsx", sheet = "Player", dsUid = "TUID", dsArgs = "playerName,heightAndWeight,born")
+    public void testSportPlayerInfo(String playerName, String heightAndWeight, String born) {
         //open yahoo home page and verify the page is opened
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -103,17 +106,19 @@ public class WebYahooTest implements IAbstractTest {
 
         //open sport page
         SportPageBase sportPage = homePage.openSportPage();
+        sportPage.assertPageOpened();
 
         //open players page
         NBAPlayerPageBase nbaPlayerPage = sportPage.openNBAPlayersPage();
+        nbaPlayerPage.assertPageOpened();
 
         //select player
-        PlayerPageBase playerPage = nbaPlayerPage.selectPlayer("Kobe Bryant");
+        PlayerPageBase playerPage = nbaPlayerPage.selectPlayer(playerName);
 
         //Verify player bio
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(playerPage.readHeightWeight(), "6' 6\"/212 lbs", "Player height is not correct");
-        softAssert.assertEquals(playerPage.readBorn(), "August 23, 1978 Philadelphia, Pennsylvania", "Player born is not correct");
+        softAssert.assertEquals(playerPage.readHeightWeight(), heightAndWeight, "Player height is not correct");
+        softAssert.assertEquals(playerPage.readBorn(), born, "Player born is not correct");
         softAssert.assertAll();
     }
 
