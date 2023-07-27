@@ -34,7 +34,6 @@ public class LoginPage extends LoginPageBase {
 
     @Override
     public String getErrorMessage() {
-        assertElementPresent(errorMessage);
         return errorMessage.getText();
     }
 

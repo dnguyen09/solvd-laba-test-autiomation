@@ -22,13 +22,11 @@ public class PlayerPage extends PlayerPageBase {
     //methods
     @Override
     public String readHeightWeight() {
-        assertElementPresent(displayHeightWeight);
         return displayHeightWeight.getText();
     }
 
     @Override
     public String readBorn() {
-        assertElementPresent(displayBorn);
         return displayBorn.getText();
     }
 }

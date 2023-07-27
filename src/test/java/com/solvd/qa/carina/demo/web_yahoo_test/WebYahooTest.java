@@ -61,7 +61,7 @@ public class WebYahooTest implements IAbstractTest {
         homePage.open();
         homePage.assertPageOpened();
 
-        //locate to weather field and serch for the city
+        //locate to weather field and search for the city
         WeatherItem weatherField = homePage.searchCityWeather(city);
 
         //assertions to verify the weather temp is empty

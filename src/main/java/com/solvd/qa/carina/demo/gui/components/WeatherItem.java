@@ -17,7 +17,7 @@ public class WeatherItem extends AbstractUIObject {
     @FindBy(xpath = ".//span[contains(@class,'C(--inkwell) ')]")
     private ExtendedWebElement highTemperature;
 
-    @FindBy(xpath = "//span[contains(@class,'C(--dolphin) ')]")
+    @FindBy(xpath = ".//span[contains(@class,'C(--dolphin) ')]")
     private ExtendedWebElement lowTemperature;
 
     //constructor

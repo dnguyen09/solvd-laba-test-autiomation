@@ -37,11 +37,7 @@ public class NewsPage extends NewsPageBase {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollBy(0,4000)", "");
 
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause(4);
     }
 
     @Override

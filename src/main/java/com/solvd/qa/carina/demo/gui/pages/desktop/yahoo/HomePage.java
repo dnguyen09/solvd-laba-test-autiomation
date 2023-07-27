@@ -26,7 +26,7 @@ public class HomePage extends HomePageBase {
     private ExtendedWebElement autocompletionResult;
 
     @FindBy(xpath = "//div[contains(@class, \"weather-card-cont\")]")
-    private WeatherItem weaTherCards;
+    private WeatherItem weatherCards;
 
     @FindBy(xpath = "//a[@id = 'root_2']")
     private ExtendedWebElement newsLink;
@@ -53,7 +53,7 @@ public class HomePage extends HomePageBase {
         seatchTextField.type(city);
         autocompletionResult.hover();
         autocompletionResult.click();
-        return weaTherCards;
+        return weatherCards;
     }
 
     @Override
