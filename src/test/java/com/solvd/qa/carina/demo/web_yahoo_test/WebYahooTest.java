@@ -32,6 +32,7 @@ public class WebYahooTest implements IAbstractTest, IAbstractDataProvider {
 
         //open news page
         NewsPageBase newsPage = homePage.openNewsPage();
+        newsPage.assertPageOpened();
 
         //open politic page
         PoliticPageBase politicPage = newsPage.getNavigationMenu().openPoliticPage();
