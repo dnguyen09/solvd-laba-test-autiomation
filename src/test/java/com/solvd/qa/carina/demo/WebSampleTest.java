@@ -1,28 +1,23 @@
 package com.solvd.qa.carina.demo;
 
-import java.util.List;
-
+import com.solvd.qa.carina.demo.gui.components.ModelItem;
+import com.solvd.qa.carina.demo.gui.components.NewsItem;
+import com.solvd.qa.carina.demo.gui.components.compare.ModelSpecs;
+import com.solvd.qa.carina.demo.gui.components.compare.ModelSpecs.SpecType;
+import com.solvd.qa.carina.demo.gui.pages.common.*;
+import com.solvd.qa.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.core.registrar.tag.Priority;
+import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.solvd.qa.carina.demo.gui.components.ModelItem;
-import com.solvd.qa.carina.demo.gui.components.NewsItem;
-import com.solvd.qa.carina.demo.gui.components.compare.ModelSpecs;
-import com.solvd.qa.carina.demo.gui.components.compare.ModelSpecs.SpecType;
-import com.solvd.qa.carina.demo.gui.pages.common.AllBrandsPageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.BrandModelsPageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.CompareModelsPageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.HomePageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.ModelInfoPageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.NewsPageBase;
-import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.agent.core.annotation.TestLabel;
-import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import java.util.List;
 
 /**
  * This sample shows how create Web test.
@@ -34,10 +29,11 @@ public class WebSampleTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestLabel(name = "feature", value = { "web", "regression" })
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testModelSpecs() {
         // Open GSM Arena home page and verify page is opened
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+//        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 
@@ -57,16 +53,19 @@ public class WebSampleTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P1)
-    @TestLabel(name = "feature", value = { "web", "acceptance" })
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testCompareModels() {
         // Open GSM Arena home page and verify page is opened
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+
         // Open model compare page
         CompareModelsPageBase comparePage = homePage.openComparePage();
+
         // Compare 2 (for mobile testing) or 3 (for desktop testing) models
         List<ModelSpecs> specs = comparePage.compareModels("Samsung Galaxy J3", "Samsung Galaxy S23 Ultra", "Samsung Galaxy J7 Pro");
+
         // Verify model announced dates
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(specs.get(0).readSpec(SpecType.ANNOUNCED), "2016, March 31. Released 2016, May 06");
@@ -84,7 +83,7 @@ public class WebSampleTest implements IAbstractTest {
 
     @Test
     @MethodOwner(owner = "qpsdemo")
-    @TestLabel(name = "feature", value = { "web", "acceptance" })
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testNewsSearch() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
@@ -94,7 +93,9 @@ public class WebSampleTest implements IAbstractTest {
         Assert.assertTrue(newsPage.isPageOpened(), "News page is not opened!");
 
         final String searchQ = "iphone";
+
         List<NewsItem> news = newsPage.searchNews(searchQ);
+
         Assert.assertFalse(CollectionUtils.isEmpty(news), "News not found!");
         SoftAssert softAssert = new SoftAssert();
         for (NewsItem n : news) {
@@ -108,7 +109,7 @@ public class WebSampleTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
-    @TestLabel(name = "feature", value = { "web", "regression" })
+    @TestLabel(name = "feature", value = {"web", "regression"})
     public void testBrandGroup() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();

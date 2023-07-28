@@ -1,16 +1,14 @@
-package com.solvd.qa.carina.demo.posts;
+package com.solvd.qa.carina.demo.posts_block_4;
 
-import com.solvd.qa.carina.demo.api.*;
+import com.solvd.qa.carina.demo.api.GetPostMethod;
+import com.solvd.qa.carina.demo.api.PatchPostMethod;
+import com.solvd.qa.carina.demo.api.PostPostMethod;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import io.restassured.response.Response;
 import org.skyscreamer.jsonassert.JSONCompareMode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-
-import java.lang.invoke.MethodHandles;
 
 public class APIPostTest implements IAbstractTest {
 
