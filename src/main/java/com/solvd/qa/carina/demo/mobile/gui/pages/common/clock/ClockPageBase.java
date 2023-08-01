@@ -18,4 +18,14 @@ public abstract class ClockPageBase extends AbstractPage {
     public abstract boolean isAddCityButtonActive();
 
     public abstract String getCityName();
+
+    public abstract String getTimeFromClock();
+
+    public abstract String getCurrentTime();
+
+    public abstract String getDateFromClock();
+
+    public abstract String getCurrentDate();
+
+
 }
