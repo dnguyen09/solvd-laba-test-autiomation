@@ -9,11 +9,11 @@ public abstract class TimerPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void set3sec();
+    public abstract void setSecond(int second);
 
     public abstract void clickPlayBtn();
 
-    public abstract void wait3sec();
+    public abstract void waitSecond(int second);
 
     public abstract boolean isPauseBtnPresent();
 

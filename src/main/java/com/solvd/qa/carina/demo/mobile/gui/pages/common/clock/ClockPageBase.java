@@ -21,11 +21,7 @@ public abstract class ClockPageBase extends AbstractPage {
 
     public abstract String getTimeFromClock();
 
-    public abstract String getCurrentTime();
-
     public abstract String getDateFromClock();
-
-    public abstract String getCurrentDate();
 
 
 }

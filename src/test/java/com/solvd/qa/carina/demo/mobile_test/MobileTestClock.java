@@ -2,6 +2,7 @@ package com.solvd.qa.carina.demo.mobile_test;
 
 import com.solvd.qa.carina.demo.gui.components.clock_menu.ClockMenuBase;
 import com.solvd.qa.carina.demo.mobile.gui.pages.common.clock.*;
+import com.solvd.qa.carina.demo.mobile.gui.pages.common.utility.UtilClock;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.dataprovider.IAbstractDataProvider;
 import com.zebrunner.carina.dataprovider.annotations.XlsDataSourceParameters;
@@ -31,10 +32,10 @@ public class MobileTestClock implements IAbstractTest, IMobileUtils, IAbstractDa
         ClockPageBase clockPage = initPage(getDriver(), ClockPageBase.class);
         Assert.assertTrue(clockPage.isPageOpened(), "Clock page isn't opened");
 
-        Assert.assertEquals(clockPage.getTimeFromClock(), clockPage.getCurrentTime(), "the display time does not" +
+        Assert.assertEquals(clockPage.getTimeFromClock(), UtilClock.getCurrentTime(), "the display time does not" +
                 " match the current time ");
 
-        Assert.assertEquals(clockPage.getDateFromClock(), clockPage.getCurrentDate(), "the display time does not" +
+        Assert.assertEquals(clockPage.getDateFromClock(), UtilClock.getCurrentDate(), "the display time does not" +
                 " match the current time ");
     }
 
@@ -48,9 +49,9 @@ public class MobileTestClock implements IAbstractTest, IMobileUtils, IAbstractDa
         TimerPageBase timerPage = navigationBarPage.switchToTimer();
         Assert.assertTrue(timerPage.isPageOpened(), "Timer page isn't opened");
 
-        timerPage.set3sec();
+        timerPage.setSecond(4);
         timerPage.clickPlayBtn();
-        timerPage.wait3sec();
+        timerPage.waitSecond(4);
         Assert.assertTrue(timerPage.isPauseBtnPresent(), "Pause button isn't present");
     }
 
@@ -65,12 +66,12 @@ public class MobileTestClock implements IAbstractTest, IMobileUtils, IAbstractDa
         Assert.assertTrue(alarmPage.isPageOpened(), "Alarm page isn't opened");
 
         alarmPage.clickAddBtn();
-        alarmPage.set6Oclock();
-        alarmPage.setMin("55 minutes");
+        alarmPage.setHour(6);
+        alarmPage.setMin(35);
         alarmPage.clickPmBtn();
         alarmPage.clickOkBtn();
 
-        Assert.assertTrue(alarmPage.isTimeAlarmPresent(), "Time alarm isn't present");
+        Assert.assertTrue(alarmPage.isTimeAlarmPresent("6:35"), "Time alarm isn't present");
     }
 
     @Test()

@@ -16,8 +16,8 @@ public class TimerPage extends TimerPageBase implements IMobileUtils {
     @FindBy(id = "action_bar_title")
     private ExtendedWebElement title;
 
-    @FindBy(id = "timer_setup_digit_3")
-    private ExtendedWebElement number3;
+    @FindBy(id = "timer_setup_digit_%d")
+    private ExtendedWebElement number;
 
     @FindBy(id = "fab")
     private ExtendedWebElement playBtn;
@@ -28,8 +28,8 @@ public class TimerPage extends TimerPageBase implements IMobileUtils {
     }
 
     @Override
-    public void set3sec() {
-        number3.click();
+    public void setSecond(int second) {
+        number.format(second).click();
     }
 
     @Override
@@ -38,8 +38,8 @@ public class TimerPage extends TimerPageBase implements IMobileUtils {
     }
 
     @Override
-    public void wait3sec() {
-        pause(3);
+    public void waitSecond(int second) {
+        pause(second);
     }
 
     @Override

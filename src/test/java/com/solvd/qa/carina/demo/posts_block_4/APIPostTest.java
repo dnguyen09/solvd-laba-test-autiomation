@@ -49,7 +49,7 @@ public class APIPostTest implements IAbstractTest {
         api.setProperties("api/posts/post.properties");
 
         //remove field
-//        api.getProperties().remove("title");
+        api.getProperties().remove("title");
         api.getProperties().remove("body");
 
         //making call to endpoint

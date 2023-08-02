@@ -16,10 +16,10 @@ public class AlarmPage extends AlarmPageBase {
     @FindBy(id = "fab")
     private ExtendedWebElement addBtn;
 
-    @ExtendedFindBy(accessibilityId = "6 o'clock")
-    private ExtendedWebElement sixOclock;
+    @ExtendedFindBy(accessibilityId = "%d o'clock")
+    private ExtendedWebElement hourTime;
 
-    @FindBy(xpath = "//android.widget.TextView[@content-desc='%s']")
+    @FindBy(xpath = "//android.widget.TextView[@content-desc='%d minutes']")
     private ExtendedWebElement minutes;
 
     @FindBy(id = "material_clock_period_pm_button")
@@ -28,7 +28,7 @@ public class AlarmPage extends AlarmPageBase {
     @FindBy(id = "material_timepicker_ok_button")
     private ExtendedWebElement okBtn;
 
-    @ExtendedFindBy(accessibilityId = "6:55 PM")
+    @ExtendedFindBy(accessibilityId = "%s PM")
     private ExtendedWebElement timeAlarm;
 
     public AlarmPage(WebDriver driver) {
@@ -42,12 +42,12 @@ public class AlarmPage extends AlarmPageBase {
     }
 
     @Override
-    public void set6Oclock() {
-        sixOclock.click();
+    public void setHour(int hour) {
+        hourTime.format(hour).click();
     }
 
     @Override
-    public void setMin(String min) {
+    public void setMin(int min) {
         minutes.format(min).click();
     }
 
@@ -62,8 +62,8 @@ public class AlarmPage extends AlarmPageBase {
     }
 
     @Override
-    public boolean isTimeAlarmPresent() {
-        return timeAlarm.isElementPresent();
+    public boolean isTimeAlarmPresent(String timeSet) {
+        return timeAlarm.format(timeSet).isElementPresent();
     }
 
 }

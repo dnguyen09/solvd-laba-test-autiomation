@@ -29,8 +29,8 @@ public class DateAndTimePage extends DateAndTimePageBase {
 
     @Override
     public void switch24HourFormat() {
-        if (switchList.get(4).getAttribute("checked").equals("false")) {
-            switchList.get(4).click();
+        if (!switchList.get(4).isChecked()) {
+            switchList.get(4).check();
         }
     }
 

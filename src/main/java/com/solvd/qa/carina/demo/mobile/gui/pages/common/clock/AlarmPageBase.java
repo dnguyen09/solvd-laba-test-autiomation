@@ -11,13 +11,13 @@ public abstract class AlarmPageBase extends AbstractPage {
 
     public abstract void clickAddBtn();
 
-    public abstract void set6Oclock();
+    public abstract void setHour(int hour);
 
-    public abstract void setMin(String min);
+    public abstract void setMin(int min);
 
     public abstract void clickPmBtn();
 
     public abstract void clickOkBtn();
 
-    public abstract boolean isTimeAlarmPresent();
+    public abstract boolean isTimeAlarmPresent(String timeSet);
 }
