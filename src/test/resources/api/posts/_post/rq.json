@@ -1,14 +1,15 @@
 [
   {
     "userId": "${userId}",
-    "id": "1",
     <#if title??>
         <#if body??>
+            "id": "1",
             "title": "${title}",
             "body": "${body}"
-        <#else> "title": "${title}"
+        <#else> "id": "1", "title": "${title}"
         </#if>
-    <#else> "body": "${body}"
+    <#elseif body??>"id": "1", "body": "${body}"
+    <#else> "id": "1"
     </#if>
   }
 ]

@@ -98,7 +98,7 @@ public class WebYahooTest implements IAbstractTest, IAbstractDataProvider {
 
     @Test(dataProvider = "DataProvider")
     @TestPriority(Priority.P3)
-    @XlsDataSourceParameters(path = "data_source/playerData.xlsx", sheet = "Player", dsUid = "TUID", dsArgs = "playerName,heightAndWeight,born")
+    @XlsDataSourceParameters(path = "data_source/testData.xlsx", sheet = "Player", dsUid = "TUID", dsArgs = "playerName,heightAndWeight,born")
     public void testSportPlayerInfo(String playerName, String heightAndWeight, String born) {
         //open yahoo home page and verify the page is opened
         HomePage homePage = new HomePage(getDriver());
